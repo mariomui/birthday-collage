@@ -87,7 +87,8 @@ class App extends React.Component {
       );
     });
     const showMalePictures = malePictures.map((item, key) => {
-      cloudWords.push(item.tags[Math.random().toFixed(1).split('.')[1] || 0]);
+      let randomNum = Math.random().toFixed(1).split('.')[1]
+      cloudWords.push((item.tags[randomNum] || item.tags[0]) || { title: 'Happy Birthday!' });
       return (
         <Template match={(malePictures.length - key)} item={item} key={item.id} />
       );

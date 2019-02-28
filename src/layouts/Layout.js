@@ -7,7 +7,7 @@ const Layout = ({ cloudWords, children }) => {
         {cloudWords.map((cloudWord, key) => {
           return (
             <span className={`cloud-${key}`} key={key}>
-              {cloudWord.title}
+              {cloudWord.title ? cloudWord.title : "!MudBANG"}
             </span>
           );
         })}

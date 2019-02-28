@@ -1,0 +1,39 @@
+
+
+.container {
+  position: relative;
+  width: 1100px;
+  height: 500px;
+}
+@for $i from 0 through 2000 {
+
+  .hello-#{$i} {
+    position: absolute;
+    float: left;
+    left: (random(3200)*2)/3+px;
+    top: (random(700)*2)/3+px;
+  }
+}
+img {
+  clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
+
+}
+.header {
+  width: 3000px;
+  background: #FF3322;
+  padding: 10px;
+}
+div .layoutHeader {
+  display: block;
+  text-align: center;
+  width: 3000px !important;
+  height: 33vh;
+  background-color: rgb(48, 39, 39) !important;
+}
+.layoutTitle {
+  display: inline-block;
+  color: white;
+  font-size: 33px;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 10px;
+}

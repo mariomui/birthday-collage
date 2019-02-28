@@ -1,11 +1,16 @@
 import React from 'react'
 import '../../styles/main.scss'
-const Layout = ({ children }) => {
+const Layout = ({ cloudWords, children }) => {
   return (
-    <div className="layoutHeader">
+    <div onClick={() => { window.location.reload() }} className="layoutHeader">
       <div className="layoutTitle">
-
-        {`Happy MukBang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang Mukbang BIRTHDAY`}
+        {cloudWords.map((cloudWord, key) => {
+          return (
+            <span className={`cloud-${key}`} key={key}>
+              {cloudWord.title}
+            </span>
+          );
+        })}
       </div>
       <div className="layoutTitle">
         {`BIRTHDAY`}

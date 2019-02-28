@@ -1,4 +1,3 @@
-
 import React, { Fragment } from "react"
 import axios from 'axios';
 import '../../styles/main.scss'
@@ -14,7 +13,7 @@ function Template({ item, match }) {
   return (
     <Fragment>
       <div className={`hello-${match}`} >
-        {!flag ? <img alt='bday' src={item.urls.small} /> : example}
+        <img alt='bday' src={!flag ? item.urls.small : example} />
       </div>
     </Fragment>
   )
@@ -26,7 +25,7 @@ class App extends React.Component {
     this.state = {
       femalePictures: [],
       malePictures: [],
-      totalPics: 500,
+      totalPics: 200,
     }
   }
 
@@ -37,7 +36,7 @@ class App extends React.Component {
         protocol: 'https',
         hostname: 'api.unsplash.com',
         pathname: 'search/photos',
-        search: `client_id=${process.env.GATSBY_API_KEY}&per_page=${picsPerPage}&page=${pageNo}&query=${queryTerm}`,
+        search: `client_id=${`50e2bfdebc399fcc282b5b124562054a30b35800f6cba8e62d55079ed15175a6`}&per_page=${picsPerPage}&page=${pageNo}&query=${queryTerm}`,
       }
     )
     const apiUrl = url.format(apiConfig);
@@ -57,8 +56,8 @@ class App extends React.Component {
       })
   }
   food = () => {
-    var str = "burgers,McDonalds,noodles,steak,pork,pudding,dinner,lunch meal";
-    str += "chocalate, dessert, lamb chops, steak, fish, sausage, foodie, cuisine, bagel, ice cream"
+    var str = "donuts, junk food, potato, chips, burgers,McDonalds,noodles,steak,pork,pudding,dinner,lunch, barbecue, dimsum, fried chicken, cake";
+    str += "chocolate, dessert, sundae, wonton, dumpling, steak, sausage, cuisine, bagel, ice cream"
     var arr = str.split(',');
     return arr[Math.floor(Math.random() * arr.length)]
   }
@@ -70,13 +69,35 @@ class App extends React.Component {
 
 
   render() {
+    const cloudWords = [];
     const { femalePictures, malePictures } = this.state
-    const showFemalePictures = femalePictures.map((item, key) => (<Template match={key} item={item} key={item.id} boyitem={malePictures[key]} />))
-    const showMalePictures = malePictures.map((item, key) => (<Template match={(malePictures.length - key)} item={item} key={item.id} />))
+    const showFemalePictures = femalePictures.map((item, key) => {
+      cloudWords.push(item.tags[
+        Math
+          .random()
+          .toFixed(1)
+          .split('.')[1]
+      ] || { title: 'Mukbang' });
+      if ((key % 7) === 0) {
+        cloudWords.push({ title: 'MukBANG!' })
+      }
+
+      return (
+        <Template match={key} item={item} key={item.id} />
+      );
+    });
+    const showMalePictures = malePictures.map((item, key) => {
+      cloudWords.push(item.tags[Math.random().toFixed(1).split('.')[1] || 0]);
+      return (
+        <Template match={(malePictures.length - key)} item={item} key={item.id} />
+      );
+    });
+
+
     return (
       <div>
 
-        <Layout >
+        <Layout cloudWords={cloudWords}>
 
           <div className='container'>
 
@@ -85,7 +106,7 @@ class App extends React.Component {
             {showMalePictures}
           </div>
         </Layout>
-      </div>
+      </div >
 
     );
   }

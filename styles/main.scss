@@ -36,4 +36,20 @@ div .layoutHeader {
   font-size: 33px;
   font-family: 'Times New Roman', Times, serif;
   margin: 10px;
+  position: relative;
+}
+
+.layoutHeader:hover {
+  cursor: crosshair
+}
+@for $i from 0 to 90 {
+
+  .cloud-#{$i} {
+    text-shadow: 2px 2px rgb(random(255), random(255), random(255));
+    display: inline;
+    position: relative;
+    z-index: 500;
+    left: random(125)+px;
+    top: random(135)+px;
+  }
 }

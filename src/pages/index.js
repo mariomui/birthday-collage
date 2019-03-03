@@ -36,7 +36,7 @@ class App extends React.Component {
         protocol: 'https',
         hostname: 'api.unsplash.com',
         pathname: 'search/photos',
-        search: `client_id=${`50e2bfdebc399fcc282b5b124562054a30b35800f6cba8e62d55079ed15175a6`}&per_page=${picsPerPage}&page=${pageNo}&query=${queryTerm}`,
+        search: `client_id=${process.env.GATSBY_API_KEY}&per_page=${picsPerPage}&page=${pageNo}&query=${queryTerm}`,
       }
     )
     const apiUrl = url.format(apiConfig);
